@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block sub_menu %}
+<ul>
+	<li><a href="{% url blog_home %}">&lt; Back</a></li>	
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="post">
+    <h3><a href="{% url view_post post.id %}">{{ post.title|upper }}</a><span><a style="color:gray" href="{% url blog_edit_post post.id %}">(edit)</a></span></h3>
+    <div class="author">posted by: {{ post.author|title }} -</div>
+    <div class="date">{{ post.datetime|date:"H:i d M Y" }}</div>
+    <div class="content">{{ post.content }}</div>
+    {% if user.is_authenticated %}
+    <div class="form_container">
+            <form method="post" action=".">
+            {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Comentar"/>
+        </form>
+    </div>
+    {% endif %}
+    <div>
+    {% for comment in post.comment_set.all %}
+        <div class="comment">
+            <div><b>{{ comment.author }} </b>said:</div>
+            <p>{{ comment.content|title }}</p>
+        </div>
+    {% empty %}
+        <div><i>No Commments</i></div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

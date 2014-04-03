@@ -3,6 +3,11 @@ a {
 	color: #fff;	
 }
 
+.post a {
+	text-decoration: none;
+	color: blue;	
+}
+
 h3 {
 	font-family: sans-serif;
 	border-bottom: 1px dashed #bbb;

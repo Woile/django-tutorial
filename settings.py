@@ -13,9 +13,15 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Martin', 'martin@devsar.com'),
+    ('Santiago', 'santiwilly@gmail.com')
 )
 
 LOGIN_URL = "/users/login/"
+#LOGIN_REDIRECT_URL = "/blog/"
+
+# Each user will have automatically a get_profile() method, which returns the
+# instance of the user profile model associated with that User
+#AUTH_PROFILE_MODULE = 'apps.blog.PerfilUser'
 
 MANAGERS = ADMINS
 
@@ -150,8 +156,8 @@ INSTALLED_APPS = (
     # ------ YOUR APPS GOES HERE -------
     'apps.core',
     'apps.blog',
-    'south', # Migraciones
-    'debug_toolbar', # Django-debug-toolbar
+    'south',  # Migraciones
+    'debug_toolbar',  # Django-debug-toolbar
 )
 
 # A sample logging configuration. The only tangible logging

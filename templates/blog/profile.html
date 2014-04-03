@@ -2,24 +2,24 @@
 
 {% block sub_menu %}
 <ul>
-	{# <li><a href="{% url blog_posts %}">All Posts</a></li><span>|</span> #}
-	<li><a href="{% url blog_create_post %}">Create Post</a></li><span>|</span>
-	<li><a href="{% url view_profile %}">Profile</a></li><span>|</span>
+    {# <li><a href="{% url blog_posts %}">All Posts</a></li><span>|</span> #}
+    <li><a href="{% url blog_create_post %}">Create Post</a></li><span>|</span>
+    <li><a href="{% url view_profile %}">Profile</a></li><span>|</span>
 </ul>
-{% endblock %}		
-		
+{% endblock %}
+
 {% block content %}
 
-<h3>Welcome to my Blog!</h3>
+<h3>{{ user.name }}'s profile</h3>
 
 <div class="posts">
 {% for post in posts %}
-	<div class="post">
-		<div class="title"><a href="{% url view_post post.id %}">{{ post.title }}</a></div>
-		<div class="author">posted by: {{ post.author|title }} -</div>
-		<div class="date">{{ post.datetime|date:"H:i d M Y" }}</div>
-		<div class="content">{{ post.content }}</div>
-	</div>
+    <div class="post">
+        <div class="title"><a href="{% url view_post post.id %}">{{ post.title }}</a></div>
+        <div class="author">posted by: {{ post.author|title }} -</div>
+        <div class="date">{{ post.datetime|date:"H:i d M Y" }}</div>
+        <div class="content">{{ post.content }}</div>
+    </div>
 {% empty %}
 Ouch! You don't have posts yet!
 {% endfor%}

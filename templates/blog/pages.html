@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block sub_menu %}
+<ul>
+    <li><a href="{% url blog_posts %}">All Posts</a></li><span>|</span>
+    <li><a href="{% url blog_create_post %}">Create Post</a></li><span>|</span>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h3>Welcome to my Blog!</h3>
+
+<div class="posts">
+{% for post in posts %}
+    <div class="post">
+        <div class="title"><a href="{% url view_post post.id %}">{{ post.title }}</a></div>
+        <div class="author">posted by: {{ post.author|title }} -</div>
+        <div class="date">{{ post.datetime|date:"H:i d M Y" }}</div>
+        <div class="content">{{ post.content }}</div>
+    </div>
+{% empty %}
+Ouch! You don't have posts yet!
+{% endfor%}
+</div>
+<div ><a style="color: blue;" href="{% url next_page 1 %}"> Previous posts</a></div>
+<div ><a style="color: blue;" href="{% url next_page 2 %}"> Next posts</a></div>
+
+{% endblock %}

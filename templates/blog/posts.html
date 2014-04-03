@@ -13,7 +13,7 @@
 <div class="posts">
 {% for post, comments in posts.iteritems %}
 	<div class="post">
-		<div class="title">{{ post.title|upper }}<span><a style="color:gray" href="{% url blog_edit_post post.id %}">(edit)</a></span></div>
+		<div class="title"><a href="{% url view_post post.id %}">{{ post.title|upper }}</a><span><a style="color:gray" href="{% url blog_edit_post post.id %}">(edit)</a></span></div>
 		<div class="author">posted by: {{ post.author|title }} -</div>
 		<div class="date">{{ post.datetime|date:"H:i d M Y" }}</div>
 		<div class="content">{{ post.content }}</div>
