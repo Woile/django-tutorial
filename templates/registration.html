@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Crear usuario nuevo{% endblock %}
+
+{% block sub_menu %}
+<ul>
+    <li><a href="{% url blog_home %}">&lt; Back</a></li>	
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h3>Cargue sus datos personales</h3>
+
+<div class="form_container">
+    <form method="post" action=".">{% csrf_token %}
+        {{ form.as_p }}
+        {{ form2.as_p}}
+        {% comment %}
+        {{ form.as_ul }}
+        {{ form.as_table }}
+        {% endcomment %}
+        <input type="submit" value="Create"/>
+</form>
+</div>
+
+{% endblock %}

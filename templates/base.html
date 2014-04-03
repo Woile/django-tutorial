@@ -11,14 +11,15 @@
 		<ul>
 			<li><a href="{% url core_home %}">Home</a></li><span>|</span>
 			<li><a href="{% url blog_home %}">Blog</a></li><span>|</span>
-			<li>Link #2</li><span>|</span>
-			<li>Link #3</li><span>|</span>
+			{% if not user.is_authenticated %}
+			<li><a href="{% url create_acc %}">Crear cuenta</a></li><span>|</span>
+			{% endif %}
+			{% if user.is_authenticated %}
+                            <li><a href="{% url logout %}">Logout</a>
+                		{% else %}
+    		          <li><a href="{% url login %}">Login</a>
+            		{% endif %}
 		</ul>
-		{% if user.is_authenticated %}
-		    <a href="{% url logout %}">Logout</a>
-		{% else %}
-		    <a href="{% url login %}">Login</a>
-		{% endif %}
 	</div>
         {% if user.is_authenticated %}
 	<div id="sub_menu">
