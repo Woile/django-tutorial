@@ -64,7 +64,7 @@ class UserRegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'last_name', 'first_name', 'email')
+        fields = ('username', 'email')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -77,6 +77,9 @@ class UserRegisterForm(forms.ModelForm):
 
 class PerfilUserForm(forms.ModelForm):
     """ Form to load extended user information"""
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
+
     class Meta:
         model = PerfilUser
         fields = ('genre', 'birth_date', )

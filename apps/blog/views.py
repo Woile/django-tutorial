@@ -36,17 +36,17 @@ def home(request):
 def create_user(request):
     """ Under development """
     form = UserRegisterForm(request.POST or None)
-    form2 = PerfilUserForm(request.POST or None)
-    if form.is_valid() and form2.is_valid():
+    #form2 = PerfilUserForm(request.POST or None)
+    if form.is_valid(): #and form2.is_valid():
         psw = form.clean_password2()  # executes def inside UserRegisterForm
         new_user = form.save(commit=False)
         new_user.set_password(psw)
         new_user.save()
-        profile = form2.save(commit=False)
-        profile.user = new_user
-        profile.save()
+        #profile = form2.save(commit=False)
+        #profile.user = new_user
+        #profile.save()
         return redirect(reverse('login'))
-    return render(request, 'registration.html', {'form': form, 'form2': form2})
+    return render(request, 'registration.html', {'form': form}) #, 'form2': form2})
 
 
 def posts(request):
@@ -105,8 +105,20 @@ def view_profile(request):
 
 def edit_profile(request):
     """under development"""
-    pass
-
+    user = request.user
+    profile = user.get_profile()
+    form = PerfilUserForm(request.POST or None, instance=profile)
+    if form.is_valid():
+        #profile = user.get_profile()  # instance of user profile
+        #user.first_name = request.POST['first_name']
+        #user.last_name = request.POST['last_name']
+        #user.save()
+        profile.save(commit=False)
+        profile.genre = request.POST['genre']
+        profile.birth_date = request.POST['birth_date']
+        profile.save()
+        return redirect(reverse("view_profile"))
+    return render(request, "edit_profile.html", {'form': form})
 
 # ---------------------------------------------------
 # FORMS EXAMPLES

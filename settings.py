@@ -2,6 +2,7 @@
 import os
 import sys
 import logging
+#from ap
 
 # Get acces to apps & libs folder
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -16,12 +17,12 @@ ADMINS = (
     ('Santiago', 'santiwilly@gmail.com')
 )
 
-LOGIN_URL = "/users/login/"
+LOGIN_URL = "/accounts/login/"
 #LOGIN_REDIRECT_URL = "/blog/"
 
 # Each user will have automatically a get_profile() method, which returns the
 # instance of the user profile model associated with that User
-#AUTH_PROFILE_MODULE = 'apps.blog.PerfilUser'
+AUTH_PROFILE_MODULE = 'blog.PerfilUser'
 
 MANAGERS = ADMINS
 

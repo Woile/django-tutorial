@@ -14,7 +14,6 @@
 <div class="form_container">
     <form method="post" action=".">{% csrf_token %}
         {{ form.as_p }}
-        {{ form2.as_p}}
         {% comment %}
         {{ form.as_ul }}
         {{ form.as_table }}

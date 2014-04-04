@@ -37,12 +37,12 @@ class PerfilUser(models.Model):
     create_post = models.CharField(max_length=1, choices=AUTHORIZATION, null=True)
     comment = models.CharField(max_length=1, choices=AUTHORIZATION, null=True)
 
-## Used ONLY when creted an User, this will create an empty PerfilUser
-#def create_user_profile(sender, instance, created, **kwargs):
-    #if created:
-        #PerfilUser.objects.create(user=instance)
+# Used ONLY when creted an User, this will create an empty PerfilUser
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        PerfilUser.objects.create(user=instance)
 
-## This signal is sent after the save is done, so, after a User is created
-#post_save.connect(create_user_profile, sender=User)
+# This signal is sent after the save is done, so, after a User is created
+post_save.connect(create_user_profile, sender=User)
 
 
