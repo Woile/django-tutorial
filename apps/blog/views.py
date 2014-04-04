@@ -107,7 +107,7 @@ def edit_profile(request):
     """under development"""
     user = request.user
     profile = user.get_profile()
-    form = PerfilUserForm(request.POST or None, instance=profile)
+    form = PerfilUserForm(request.POST or None)
     if form.is_valid():
         #profile = user.get_profile()  # instance of user profile
         #user.first_name = request.POST['first_name']
