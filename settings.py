@@ -114,7 +114,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'apps.core.middleware.MyMiddleware',
+    #'apps.core.middleware.MyMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware', #Django-debug-toolbar
 )
 
@@ -126,8 +126,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
-    "apps.core.context_processor.static_url",
-    "apps.core.context_processor.debug"
+    #"apps.core.context_processor.static_url",
+    #"apps.core.context_processor.debug"
 )
 
 ROOT_URLCONF = 'urls'

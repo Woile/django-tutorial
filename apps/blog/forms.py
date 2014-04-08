@@ -77,9 +77,9 @@ class UserRegisterForm(forms.ModelForm):
 
 class PerfilUserForm(forms.ModelForm):
     """ Form to load extended user information"""
-    first_name = forms.CharField(label="Nombre")
-    last_name = forms.CharField(label="Apellido")
+    first_name = forms.CharField(label="Nombre", required=False)
+    last_name = forms.CharField(label="Apellido", required=False)
 
     class Meta:
         model = PerfilUser
-        fields = ('genre', 'birth_date', )
+        fields = ('genre', 'birth_date')

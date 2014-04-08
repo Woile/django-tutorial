@@ -88,6 +88,7 @@ def create_post(request):
     return render(request, "blog/create_post.html", {'form': form})
 
 
+@login_required
 def edit_post(request, post_id):
     logging.critical(request.method)
     a_post_instance = get_object_or_404(Post, id=post_id)
@@ -99,26 +100,28 @@ def edit_post(request, post_id):
     return render(request, "blog/edit_post.html", {'form': form})
 
 
+@login_required
 def view_profile(request):
     return render(request, 'view_profile.html')
 
 
+@login_required
 def edit_profile(request):
     """under development"""
     user = request.user
     profile = user.get_profile()
-    form = PerfilUserForm(request.POST or None)
-    if form.is_valid():
-        #profile = user.get_profile()  # instance of user profile
-        #user.first_name = request.POST['first_name']
-        #user.last_name = request.POST['last_name']
+    form2 = PerfilUserForm(request.POST or None)  # , instance=profile)
+    print "SAnti capooo"
+    print form2.is_valid()
+    if form2.is_valid():
+        #user.first_name = form2.cleaned_data['first_name']
+        #user.last_name = form2.cleaned_data['last_name']
         #user.save()
-        profile.save(commit=False)
-        profile.genre = request.POST['genre']
-        profile.birth_date = request.POST['birth_date']
-        profile.save()
+        #profile.genre = form2.cleaned_data['genre']
+        #profile.birth_date = form2.cleaned_data['birth_date']
+        form2.save()
         return redirect(reverse("view_profile"))
-    return render(request, "edit_profile.html", {'form': form})
+    return render(request, "edit_profile.html", {'form': form2})
 
 # ---------------------------------------------------
 # FORMS EXAMPLES
