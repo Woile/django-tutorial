@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^accounts/login/', "django.contrib.auth.views.login", dict(template_name="login.html"), name="login"),
     url(r'^accounts/logout/', "django.contrib.auth.views.logout", {"next_page": "/"}, name="logout"),
     url(r'^accounts/profile/$', 'apps.blog.views.view_profile', name='view_profile'),
-    url(r'^accounts/profile/edit_profile$', 'apps.blog.views.edit_profile', name='edit_profile'),
+    url(r'^accounts/profile/edit_profile/$', 'apps.blog.views.edit_profile', name='edit_profile'),
     url(r'^accounts/create/$', 'apps.blog.views.create_user', name='create_acc'),
     #url(r'^users/profile/$', 'django.contrib.auth.views.get_profile', name='view_profile'),
     # -------- ADMIN -----------

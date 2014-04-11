@@ -110,16 +110,17 @@ def edit_profile(request):
     """under development"""
     user = request.user
     profile = user.get_profile()
-    form2 = PerfilUserForm(request.POST or None)  # , instance=profile)
+    form2 = PerfilUserForm(request.POST or None, instance=profile)
     print "SAnti capooo"
     print form2.is_valid()
     if form2.is_valid():
-        #user.first_name = form2.cleaned_data['first_name']
-        #user.last_name = form2.cleaned_data['last_name']
-        #user.save()
-        #profile.genre = form2.cleaned_data['genre']
-        #profile.birth_date = form2.cleaned_data['birth_date']
-        form2.save()
+        print form2.cleaned_data
+        user.first_name = form2.cleaned_data['first_name']
+        user.last_name = form2.cleaned_data['last_name']
+        user.save()
+        profile.genre = form2.cleaned_data['genre']
+        profile.birth_date = form2.cleaned_data['birth_date']
+        profile.save()
         return redirect(reverse("view_profile"))
     return render(request, "edit_profile.html", {'form': form2})
 

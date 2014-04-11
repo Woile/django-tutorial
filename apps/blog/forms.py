@@ -34,7 +34,13 @@ def check_title(value):
 
 
 class PostForm(forms.ModelForm):
-    title = forms.CharField(required=True, help_text="Aqui va el titulo del post", label="Titulo", validators=[without_asterix, check_size])
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['title'].required = True
+        self.fields['title'].help_text = "Aqui va el titulo del post"
+        self.fields['title'].label = 'Titulo'
+        self.fields['title'].validators = [without_asterix, check_size]
 
     class Meta:
         model = Post
@@ -74,11 +80,33 @@ class UserRegisterForm(forms.ModelForm):
                 #self.error_messages['password_mismatch'])
         return password2
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
 
 class PerfilUserForm(forms.ModelForm):
     """ Form to load extended user information"""
-    first_name = forms.CharField(label="Nombre", required=False)
-    last_name = forms.CharField(label="Apellido", required=False)
+    def __init__(self, *args, **kwargs):
+        # magic
+        self.user = kwargs['instance'].user
+        user_kwargs = kwargs.copy()
+        user_kwargs['instance'] = self.user
+        self.uf = UserForm(*args, **user_kwargs)
+        # magic end
+        super(PerfilUserForm, self).__init__(*args, **kwargs)
+
+        self.fields.update(self.uf.fields)
+        self.initial.update(self.uf.initial)
+
+    def save(self, *args, **kwargs):
+        # save both forms
+        self.uf.save(*args, **kwargs)
+        return super(PerfilUserForm, self).save(*args, **kwargs)
+
+    #first_name = forms.CharField(label="Nombre", required=False)
+    #last_name = forms.CharField(label="Apellido", required=False)
 
     class Meta:
         model = PerfilUser
