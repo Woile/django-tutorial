@@ -21,7 +21,7 @@
 		<div>
 		{% for comment in comments %}
 			<div class="comment">
-				<div><b>{{ comment.author }} </b>said:</div>
+				<div><b>{{ comment.author }} </b>said at <b>{{ comment.datetime }}</b>:</div>
 				<p>{{ comment.content|title }}</p>
 			</div>
 		{% empty %}

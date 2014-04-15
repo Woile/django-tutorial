@@ -32,9 +32,16 @@
 	</div>
 	<div id="footer">
 		<ul>
-			<li>link #1</li>
-			<li>link #2</li>
-			<li>link #3</li>
+			<li><a href="{% url core_home %}">Home</a></li><span>|</span>
+			<li><a href="{% url blog_home %}">Blog</a></li><span>|</span>
+			{% if not user.is_authenticated %}
+			<li><a href="{% url create_acc %}">Crear cuenta</a></li><span>|</span>
+			{% endif %}
+			{% if user.is_authenticated %}
+                            <li><a href="{% url logout %}">Logout</a>
+                		{% else %}
+    		          <li><a href="{% url login %}">Login</a>
+            		{% endif %}
 		</ul>
 	</div>
 </body>

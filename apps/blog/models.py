@@ -19,8 +19,11 @@ class Post(models.Model):
 class Comment(models.Model):
     author = models.ForeignKey(User)
     post = models.ForeignKey(Post)
+    datetime = models.DateTimeField(blank=True, auto_now_add=True)
     content = models.TextField(blank=False, max_length=100)
 
+    class Meta:
+        ordering = ['-datetime']
 
 class PerfilUser(models.Model):
     user = models.OneToOneField(User)
