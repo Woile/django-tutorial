@@ -1,48 +1,48 @@
 <html>
 <head>
-	<title>{% block title %}Este es el base{% endblock %}</title>
-	
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />	
-	
+    <title>{% block title %}Este es el base{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
+
 </head>
 <body>
     <div id="header">
-		<div id="logo">Django Tutorial</div>
-		<ul>
-			<li><a href="{% url core_home %}">Home</a></li><span>|</span>
-			<li><a href="{% url blog_home %}">Blog</a></li><span>|</span>
-			{% if not user.is_authenticated %}
-			<li><a href="{% url create_acc %}">Crear cuenta</a></li><span>|</span>
-			{% endif %}
-			{% if user.is_authenticated %}
+        <div id="logo">Django Tutorial</div>
+        <ul>
+            <li><a href="{% url core_home %}">Home</a></li><span>|</span>
+            <li><a href="{% url blog_home %}">Blog</a></li><span>|</span>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url create_acc %}">Crear cuenta</a></li><span>|</span>
+            {% endif %}
+            {% if user.is_authenticated %}
                             <li><a href="{% url logout %}">Logout</a>
-                		{% else %}
-    		          <li><a href="{% url login %}">Login</a>
-            		{% endif %}
-		</ul>
-	</div>
+                        {% else %}
+                      <li><a href="{% url login %}">Login</a>
+                    {% endif %}
+        </ul>
+    </div>
         {% if user.is_authenticated %}
-	<div id="sub_menu">
-	{% block sub_menu %}			
-	{% endblock %}
-	</div>
-	{% endif %}
-	<div id="content">
-	{% block content %}This is the default content!{% endblock %}
-	</div>
-	<div id="footer">
-		<ul>
-			<li><a href="{% url core_home %}">Home</a></li><span>|</span>
-			<li><a href="{% url blog_home %}">Blog</a></li><span>|</span>
-			{% if not user.is_authenticated %}
-			<li><a href="{% url create_acc %}">Crear cuenta</a></li><span>|</span>
-			{% endif %}
-			{% if user.is_authenticated %}
+    <div id="sub_menu">
+    {% block sub_menu %}
+    {% endblock %}
+    </div>
+    {% endif %}
+    <div id="content">
+    {% block content %}This is the default content!{% endblock %}
+    </div>
+    <div id="footer">
+        <ul>
+            <li><a href="{% url core_home %}">Home</a></li><span>|</span>
+            <li><a href="{% url blog_home %}">Blog</a></li><span>|</span>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url create_acc %}">Crear cuenta</a></li><span>|</span>
+            {% endif %}
+            {% if user.is_authenticated %}
                             <li><a href="{% url logout %}">Logout</a>
-                		{% else %}
-    		          <li><a href="{% url login %}">Login</a>
-            		{% endif %}
-		</ul>
-	</div>
+                        {% else %}
+                      <li><a href="{% url login %}">Login</a>
+                    {% endif %}
+        </ul>
+    </div>
 </body>
 </html>

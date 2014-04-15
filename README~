@@ -11,9 +11,4 @@ Como instalar el proyecto?
 4) Aplicar todas las migraciones
     python manage.py migrate --fake
 
-Cambios:
-1. Comentarios agregados ordenados por fecha.
-2. Crear cuenta y editar perfil.
-3. Blog home muestra todos las entradas con un paginador.
-4. Link a cada post particular.
 #EOF
