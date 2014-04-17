@@ -9,8 +9,6 @@ from django.template.context import RequestContext
 from apps.blog.forms import UserRegisterForm
 
 
-
-@login_required
 def home(request):
     return render(request, "core/home.html")
 

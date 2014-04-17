@@ -4,7 +4,13 @@
 
 {% block content %}
 
-<p>Hi, <b>{{ user }}</b> welcome!</p>
+<p>Hi, <b>
+{% if user.is_authenticated %}
+    {{ user }},
+{% else %}
+    unknown person,
+{% endif %}
+</b> welcome!</p>
 
 <form action="." method="post">
 

@@ -3,16 +3,16 @@ import logging
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, Http404
-from django.contrib.auth.models import User
+#from django.http import HttpResponseRedirect, Http404
+#from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm  # Form to create user
+#from django.contrib.auth.forms import UserCreationForm  # Form to create user
 #from django.contrib.auth.views import login
 from apps.blog.models import Post
 from apps.blog.forms import PostForm
 from apps.blog.forms import CommentForm, UserRegisterForm, PerfilUserForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from apps.blog.decorators import owner
 
 #def home(request):
     #posts = Post.objects.all().order_by('-datetime')[:2]
@@ -89,6 +89,7 @@ def create_post(request):
 
 
 @login_required
+@owner
 def edit_post(request, post_id):
     logging.critical(request.method)
     a_post_instance = get_object_or_404(Post, id=post_id)
